@@ -1,0 +1,68 @@
+using NUnit.Framework.Internal;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+namespace stringequal
+{
+    public class Calculation
+    {
+
+        public string StringToTest
+        {
+            get
+            {
+                return "String to test";
+            }
+        }
+
+        public bool AreStringsEqual(String str1, String str2)
+        {
+            return str1 == str2;
+        }
+    }
+}
+
+
+_______________________________________________________________________
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using NUnit.Framework;
+using NUnit.Framework.Internal;
+
+namespace stringequal
+{
+    [TestFixture]
+    class Nunit
+    {
+
+        Calculation cal = new Calculation();
+        String str = "String to test";
+
+        [Test]
+        public void t1()
+        {
+
+            String result = cal.StringToTest;
+            Assert.That(result, Is.Not.Null.And.EqualTo(str));
+        }
+        [Test]
+        public void t2()
+        {
+            bool result = cal.AreStringsEqual(str, "String to test");
+
+            Assert.That(result, Is.True);
+        }
+        [Test]
+        public void t3()
+        {
+            bool result = cal.AreStringsEqual(str, "String to test");
+            Assert.That(result, Is.False);
+        }
+    }
+}
